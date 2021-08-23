@@ -63,7 +63,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #17a2b8;
+  background-color: #000;
   height: 100vh;
 }
 #login .container #login-row #login-column #login-box {
@@ -84,7 +84,19 @@ body {
 </Head>
 <body>
     <div id="login">
-        <h3 class="text-center text-white pt-5">Aurelia Hotels</h3>
+      <BR>
+      
+      <BR>
+
+     
+        <div class="text-center">
+            <a href="index.html">
+                <img src="../img/logo.png" alt="">
+            </a>
+
+        </div>
+       
+
         <div class="container">
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
@@ -100,7 +112,7 @@ body {
                                 <input type="password" name="password"  id="password" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
+                             <br>
                                 <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
                             </div>
                             <div id="register-link" class="text-right">
@@ -110,8 +122,12 @@ body {
                     </div>
                     <div class="text-center text-white bg-danger "><?PHP echo $error;?></div>
                 </div>
+                
             </div>
+            
         </div>
+        
     </div>
+    
 </body>
 </html>

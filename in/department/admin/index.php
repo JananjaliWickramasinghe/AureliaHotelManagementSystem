@@ -1,7 +1,7 @@
 <?php
 	include("../../check.php");	
 	include("../../connection.php");
-
+	
 	if(isset($_SESSION['profileimg'])){
 		
 		$profileimg="<img src='Admin/M_ADMIN/users_profile_images/".$_SESSION['profileimg']."' alt='profile pic'>";	
@@ -62,22 +62,15 @@ $msg="";
                 <ul class="nav side-menu">
                   <li><a href="index.php?tab=home"><i class="fa fa-home"></i> Main <span class=""></span></a>
 				          </li>
-                   <li><a><i class="fa fa-edit"></i>Users<span class="fa fa-chevron-down"></span></a>
+                   <li><a><i class="fa fa-user"></i>Users<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="index.php?tab=manageusers">Manage Users</a></li>
                       <li><a href="index.php?tab=createnewuser">Create New User</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-bar-chart-o"></i>Report<span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-					            <li><a href="index.php?tab=report_gen_monthly">Get Full Report</a></li>
-                      <li><a href="index.php?tab=report_gen_home">Report Generate Main</a></li>
-                      <li><a href="index.php?tab=report_gen_daily">Get per Day Report</a></li>
-                      <li><a href="index.php?tab=report_gen_search_std">Get by Student</a></li>
-                      <li><a href="report_gen/report_gen_barchart_sel.php">View Chart</a></li>
-                    </ul>
-                  </li>
-				          <li><a href="index.php?tab=payment_home"><i class="fa fa-table"></i> Settings <span class=""></span></a></li>    
+                  <li><a href="index.php?tab=reports"><i class="fa fa-file"></i> Reports <span class=""></span></a>
+				          </li>
+				         
                 </ul>
               </div>
             </div>
@@ -95,7 +88,7 @@ $msg="";
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                   <?php echo $profileimg;?>  <?php echo $login_name;?> (<?php echo $login_user;?>)
+                   <?php echo $profileimg;?>  <?php echo $login_name;?> <?php echo $login_lastname;?> (<?php echo $login_user;?>)
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -126,9 +119,17 @@ $msg="";
                     if ((empty($_GET)) or ($t=='home')) {
                         include "dashboard/index.php";
                       }else if ($t=='manageusers'){
-                        include "dashboard/table.php";
-                      } else if ($t=='createnewuser'){
-                        include "dashboard/create_new_user.php";                  
+                        include "dashboard/manage_users.php";
+                      } else if (($t=='reports')){
+                        include "dashboard/reports.php";       
+
+                      } else if (($t=='createnewuser') & (!isset($_GET['user'])) & (!isset($_GET['action']))){
+                        include "dashboard/user.php";                  
+                      } else if (($t=='edituser') & (isset($_GET['user'])) & (isset($_GET['action'])) & ($_GET['action']=='edit')){
+                        include "dashboard/user.php";                  
+                             
+                      } else {
+                        include "dashboard/404.php";  
                       } 
                       
                     ?>

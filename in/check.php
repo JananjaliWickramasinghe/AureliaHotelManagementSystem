@@ -1,7 +1,16 @@
 <?php
 include('../../connection.php');
 session_start();
+
+if(!isset($_SESSION['username'])){
+	header('Location: ../../index.php');
+	$user_check=NULL;
+
+}else{
 $user_check=$_SESSION['username'];
+
+
+}
 
 
 
@@ -54,6 +63,6 @@ if(!isset($user_check))
 				echo "0 results";
 				}
 				$conn->close();
-//header("Location: ../index.php");
+
 }
 ?>

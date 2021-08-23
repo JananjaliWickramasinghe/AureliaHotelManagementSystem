@@ -36,7 +36,7 @@
   }
   
   input[type=submit] {
-    background-color: #4CAF50;
+    background-color: #1c48a8;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -46,14 +46,10 @@
   }
   
   input[type=submit]:hover {
-    background-color: #45a049;
+    background-color: #ccb42a;
+    color: rgb(0, 0, 0);
   }
   
-  .containerform {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
-  }
 
   
   .col-25 {
@@ -82,3 +78,4 @@
       margin-top: 0;
     }
   }
+  

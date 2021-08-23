@@ -2,6 +2,10 @@
 * {
   box-sizing: border-box;
 }
+.container{
+
+  padding: 5%;;
+}
 
 body {
   margin: 0;
@@ -56,3 +60,21 @@ body {
     width: 100%;
   }
 }
+
+
+/*center*/
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.subtitle{
+  padding-left: 45px;
+}
+
+
