@@ -41,11 +41,6 @@ $user = $_SESSION['username'];
       echo "0 results";
     }
 
-    
-    
-
-
-
 $msg="";
 ?>
 <!DOCTYPE html>
@@ -117,30 +112,9 @@ $msg="";
           
       
       </table>
-        
 
       </div>
     </div>
-
-    <div class="row">
-      <div class="col-sm-2">
-      <h2>Employees</h2>
-        <hr>
-      </div>
-      <div class="col-sm-8">.col-sm-8</div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-2"><h2>Resturant</h2> <hr></div>
-      <div class="col-sm-8">.col-sm-8</div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-2"><h2>Customer Reviews</h2> <hr></div>
-      <div class="col-sm-8">.col-sm-8</div>
-    </div>
-
-
 
   </div>
   

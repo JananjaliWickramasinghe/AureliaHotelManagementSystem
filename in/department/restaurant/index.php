@@ -64,18 +64,18 @@ $msg="";
 				          </li>
                    <li><a><i class="fa fa-cutlery"></i>Food Menus<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="index.php?tab=manageusers">Manage Food Menus</a></li>
-                      <li><a href="index.php?tab=createnewuser">Create New Menu</a></li>
+                      <li><a href="index.php?tab=managemenu">Manage Food Menus</a></li>
+                      <li><a href="index.php?tab=createmenu">Create New Menu</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-user"></i>Reviews<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="index.php?tab=manageusers">Waiting for approval</a></li>
-                      <li><a href="index.php?tab=createnewuser">Approved Reviews</a></li>
-                      <li><a href="index.php?tab=createnewuser">Rejected Reviews</a></li>
+                      <li><a href="index.php?tab=newreviews">Waiting for approval</a></li>
+                      <li><a href="index.php?tab=approvedreviews">Approved Reviews</a></li>
+                      
                     </ul>
                   </li>
-                  <li><a href="index.php?tab=reports"><i class="fa fa-bar-chart"></i> Reports <span class=""></span></a>
+                  <li><a href="index.php?tab=reports"><i class="fa fa-bar-chart"></i>Reports <span class=""></span></a>
 				          </li>
 				         
                 </ul>
@@ -125,15 +125,21 @@ $msg="";
                    <?php  
                     if ((empty($_GET)) or ($t=='home')) {
                         include "dashboard/index.php";
-                      }else if ($t=='manageusers'){
-                        include "dashboard/manage_users.php";
+                      }else if ($t=='managemenu'){
+                        include "dashboard/manage_menu.php";
                       } else if (($t=='reports')){
                         include "dashboard/reports.php";       
 
-                      } else if (($t=='createnewuser') & (!isset($_GET['user'])) & (!isset($_GET['action']))){
-                        include "dashboard/user.php";                  
-                      } else if (($t=='edituser') & (isset($_GET['user'])) & (isset($_GET['action'])) & ($_GET['action']=='edit')){
-                        include "dashboard/user.php";                  
+                      }  else if (($t=='approvedreviews')){
+                        include "dashboard/reviewsapproved.php";       
+
+                      }  else if (($t=='newreviews')){
+                        include "dashboard/reviewswaiting.php";       
+
+                      }else if (($t=='createmenu') & (!isset($_GET['menu'])) & (!isset($_GET['action']))){
+                        include "dashboard/menu.php";                  
+                      } else if (($t=='editmenu') & (isset($_GET['menu'])) & (isset($_GET['action'])) & ($_GET['action']=='edit')){
+                        include "dashboard/menu.php";                  
                              
                       } else {
                         include "dashboard/404.php";  

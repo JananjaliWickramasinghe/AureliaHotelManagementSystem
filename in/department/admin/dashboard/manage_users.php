@@ -1,11 +1,32 @@
 <?php
 require_once('../../connection.php');
 $result = mysqli_query($conn,"SELECT * FROM users WHERE  Adminaccess=0 AND NOT Adminaccess=1");
+
+
+$today =  date("m/d/y");
+
+  //title
+  if (isset($_GET['action'])){
+    if (($_GET['tab']=='manageusers') AND($_GET['action']=='delete')) {
+      $uid = $_GET['user'];
+      $sql = "DELETE FROM users WHERE uid=$uid";
+      if ($conn->query($sql) === TRUE) {
+        
+        echo '<script>alert("Record deleted successfully!");</script>';
+        echo '<script>location.replace("index.php?tab=manageusers");</script>';
+      } else {
+        echo "Error deleting record: " . $conn->error;
+      }
+
+    }
+  }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Manage Users</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../css/css_subpage.css">
@@ -24,8 +45,6 @@ $result = mysqli_query($conn,"SELECT * FROM users WHERE  Adminaccess=0 AND NOT A
   padding: 10px;
   
 }
-
-
 
 </style>
 

@@ -44,8 +44,8 @@ $today =  date("m/d/y");
                         <select id="type" name="type" class="form-control">
                         
                           <option selected>Choose...</option>
-                          <option value="AED">All Employee Details</option>
-                          <option value="ML">Menu List</option>
+                          <option value="AED">Food Review analytics</option>
+                          <option value="ML">Menu Details</option>
 
                         </select>
                         </div>                         

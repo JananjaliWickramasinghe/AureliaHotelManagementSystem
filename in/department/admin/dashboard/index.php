@@ -94,53 +94,24 @@ $msg="";
        
           <tr>
             <th><?php echo $firstname;?> <?php echo $lastname;?></th>
-           
           </tr>
-     
-      
           <tr>
             <td>Department - <?php echo $department;?> > Designation - <?php echo $designation;?> </td>
-          
           </tr>
           <tr>
             <td>Username - <?php echo $username;?></td>
-          
           </tr>
           <tr>
             <td>Email - <?php echo $email;?></td>
-          
           </tr>
           <tr>
             <td>Mobile - <?php echo $m1;?> / <?php echo $m2;?></td>
-          
           </tr>
           
-      
       </table>
         
-
       </div>
     </div>
-
-    <div class="row">
-      <div class="col-sm-2">
-      <h2>Employees</h2>
-        <hr>
-      </div>
-      <div class="col-sm-8">.col-sm-8</div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-2"><h2>Resturant</h2> <hr></div>
-      <div class="col-sm-8">.col-sm-8</div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-2"><h2>Customer Reviews</h2> <hr></div>
-      <div class="col-sm-8">.col-sm-8</div>
-    </div>
-
-
 
   </div>
   

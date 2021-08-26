@@ -42,11 +42,12 @@ $today =  date("m/d/y");
                       
                           <label for="type">Report name</label>
                         <select id="type" name="type" class="form-control">
-                        
                           <option selected>Choose...</option>
                           <option value="AED">All Employee Details</option>
                           <option value="ML">Menu List</option>
-
+                          <option value="ML">Reviews - Rejected</option>
+                          <option value="ML">Reviews - Approved</option>
+                          <option value="ML">Reviews - Pending</option>
                         </select>
                         </div>                         
                 </div>

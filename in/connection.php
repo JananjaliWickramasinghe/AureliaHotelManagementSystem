@@ -1,5 +1,6 @@
 <?php
 //main connection details
+error_reporting(E_ALL ^ E_DEPRECATED);
 $head_hostname = "localhost";
 $head_user = "root";//change
 $head_password = "";//change

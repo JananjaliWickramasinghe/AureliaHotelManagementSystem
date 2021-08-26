@@ -77,7 +77,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       if($pass1===$pass2){
         if ($conn->query($sqlin) === TRUE) {
-          echo '<script>alert("Insert success");</script>';
+          echo '<script>alert("User successfully inserted!");</script>';
+          echo '<script>location.replace("index.php?tab=manageusers");</script>';
         } else {
           echo "Error: " . $sqlin . "<br>" . $conn->error;
         }
@@ -107,10 +108,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sqlupdate = "UPDATE users SET firstname='".$fn."',lastname='".$ln."',username='".$usern."',department='".$dep."',designation='".$des."',email='".$email."', mobile1='".$p1."', mobile2='".$p2."' WHERE uid='".$uidno."'";
         if (mysqli_query($conn, $sqlupdate)) {
           echo '<script>alert("Updated successfully");</script>';
-        } else {
-
-         header("location: ../../6index.php?tab=manageusers");
-        }
+          echo '<script>location.replace("index.php?tab=manageusers");</script>';
+        } 
         $conn->close();
      
     }else {
@@ -265,15 +264,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               </div>
               <hr>
         </div>        
-        <div class="row">
-            <div class="col-25">
-            </div>
-            <div class="col-75">
-          <div class="form-group">
-          <label for="attachmentfile">Employee Photo</label>
-            <input type="file" class="form-control-file" id="attachmentfile">
-          </div>
-        </div>
+       
         <div class="row">
             <div class="col-25">
               <label for="fname"></label>
