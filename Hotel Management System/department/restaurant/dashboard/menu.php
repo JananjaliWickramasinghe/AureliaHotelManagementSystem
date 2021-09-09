@@ -45,7 +45,8 @@ $today =  date("m/d/y");
     $properties = 'disabled';//password change disable in update form
     $button ='Update Menu';
 
-    
+   
+
   }
 
 //Insert Data to DB
@@ -128,8 +129,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           echo '<script>alert("Menu Updated successfully!");</script>';
           echo '<script>location.replace("index.php?tab=managemenu");</script>';
         } else {
-
           echo "Error updating record: " . $conn->error;
+         
         }
         $conn->close();
      

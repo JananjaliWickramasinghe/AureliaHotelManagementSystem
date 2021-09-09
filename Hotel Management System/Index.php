@@ -80,23 +80,16 @@ body {
   margin-top: -85px;
 }
 </style>
-
 </Head>
 <body>
     <div id="login">
       <BR>
-      
       <BR>
-
-     
         <div class="text-center">
             <a href="index.html">
                 <img src="../img/logo.png" alt="">
             </a>
-
         </div>
-       
-
         <div class="container">
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
@@ -113,7 +106,7 @@ body {
                             </div>
                             <div class="form-group">
                              <br>
-                                <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
+                                <input type="submit" name="submit" class="btn btn-info btn-md" value="Login">
                             </div>
                             <div id="register-link" class="text-right">
                                 <a href="#" class="text-info">Reset Password</a>
