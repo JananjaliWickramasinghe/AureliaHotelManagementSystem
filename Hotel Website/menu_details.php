@@ -1,5 +1,5 @@
 <?php
-require_once('in/connection.php');
+require_once('db/connection.php');
 
  if ($_GET['menu']){
 
@@ -27,13 +27,75 @@ require_once('in/connection.php');
     if ($result2->num_rows > 0) {
     // output data of each row
     while($row = $result2->fetch_assoc()) {
-      $URL = "in/department/restaurant/images/".$row["image_name"];           
+      $URL = "../Hotel_Management_System/department/restaurant/images/".$row["image_name"];           
     }
     } else {
-      $URL = "in/department/restaurant/images/noimg/NOIMAGE.jpg";      
+      $URL = "../Hotel_Management_System/department/restaurant/images/noimg/NOIMAGE.jpg";      
     }
+    
   }
 
+
+// define variables and set to empty values
+$nameErr = $emailErr  = $reviewErr = "";
+$name = $email = $gender = $comment = $review = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+   echo 'alert("I am an alert box!");';
+  if (empty($_POST["name"])) {
+    $nameErr = "Name is required";
+  } else {
+    $name = test_input($_POST["name"]);
+    // check if name only contains letters and whitespace
+    if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
+      $nameErr = "Only letters and white space allowed";
+    }
+  }
+  
+  if (empty($_POST["email"])) {
+    $emailErr = "Email is required";
+  } else {
+    $email = test_input($_POST["email"]);
+    // check if e-mail address is well-formed
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+      $emailErr = "Invalid email format";
+    }
+  }
+    
+  
+  if (empty($_POST["review"])) {
+    $review = "";
+  } else {
+    $review = test_input($_POST["review"]);
+  }
+    $date = date("Y-m-d");
+    $menuid = $_GET['menu'];
+  //Send data to database
+  if ($_GET['menu']){
+    $sql = "INSERT INTO reviews (name, review, email,addeddate,menuId)
+    VALUES ('".$name."', '".$review."', '".$email."','".$date."','".$menuid."')";
+
+    if ($conn->query($sql) === TRUE) {
+    echo "New record created successfully";
+    echo "alart('done')";
+    } else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+    echo "alart('not done')";
+    }
+
+  }
+
+
+
+ 
+}
+
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
 ?>
 
 
@@ -64,10 +126,13 @@ require_once('in/connection.php');
    <link rel="stylesheet" href="css/slicknav.css">
    <link rel="stylesheet" href="css/style.css">
    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+   <style>
+.error {color: #FF0000;}
+</style>
 </head>
 
 <body>
-   <!--[if lte IE 9]>
+ <!--[if lte IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
 
@@ -80,14 +145,14 @@ require_once('in/connection.php');
                       <div class="col-xl-5 col-lg-6">
                           <div class="main-menu  d-none d-lg-block">
                               <nav>
-                              <ul id="navigation">
-                                        <li><a class="active" href="index.html">home</a></li>
-                                        <li><a href="menu.php">Menu</a></li>
-                                        <li><a href="about.html">About</a></li>
-                                       </li>
-                                       
-                                        <li><a href="contact.html">Contact</a></li>
-                                    </ul>
+                                 <ul id="navigation">
+                                    <li><a class="active" href="index.html">home</a></li>
+                                    <li><a href="menu.php">Menu</a></li>
+                                    <li><a href="about.html">About</a></li>
+                                   </li>
+                                   
+                                    <li><a href="contact.html">Contact</a></li>
+                                </ul>
                               </nav>
                           </div>
                       </div>
@@ -136,7 +201,7 @@ require_once('in/connection.php');
 
   <!-- bradcam_area_start -->
   <div class="bradcam_area breadcam_bg">
-      <h3><?php echo $name;?></h3>
+      <h3>single blog</h3>
   </div>
   <!-- bradcam_area_end -->
 
@@ -147,117 +212,301 @@ require_once('in/connection.php');
             <div class="col-lg-8 posts-list">
                <div class="single-post">
                   <div class="feature-img">
-                     <img class="img-fluid" src="<?php echo $URL;?>" alt="">
+                    <img class="img-fluid" src="<?php echo $URL;?>" alt="">
                   </div>
                   <div class="blog_details">
                      <h2><?php echo $name;?>
                      </h2>
                      <ul class="blog-info-link mt-3 mb-4">
                         <li><a href="#"><i class="fa fa-user"></i> <?php echo $category;?></a></li>
-                        <li><a href="#"><i class="fa fa-comments"></i> 05 Comments</a></li>
+                        <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
                      </ul>
                      <p class="excert">
-                     <?php echo $des;?>
+                        <?php echo $sdes;?>
                      </p>
                      <p>
-                     <?php echo $sdes;?>
+                        <?php echo $des;?>
                      </p>
-                     
+                    
                   </div>
                </div>
-             
+               <div class="navigation-top">
+                  <div class="d-sm-flex justify-content-between text-center">
+                     <p class="like-info"><span class="align-middle"><i class="fa fa-heart"></i></span> Lily and 4
+                        people like this</p>
+                     <div class="col-sm-4 text-center my-2 my-sm-0">
+                        <!-- <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> -->
+                     </div>
+                     <ul class="social-icons">
+                        <li><a href="#"><i class="fa fa-facebook-f"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                        <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                     </ul>
+                  </div>
 
 
 
-               <div class="comment-form">
-                  <h4>Leave a Review</h4>
-                  <form class="form-contact comment_form" action="#" id="commentForm">
+                  <div class="comment-form">
+                  <h4>Leave a Reply</h4>
+                  <form class="form-contact comment_form" method="post" id="commentForm">
                      <div class="row">
                         <div class="col-12">
                            <div class="form-group">
-                              <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9"
-                                 placeholder="Write Review"></textarea>
+                              <span class="error">* <?php echo $reviewErr;?></span>
+                              <textarea class="form-control w-100" name="review" id="review" cols="30" rows="9"
+                                 placeholder="Write Review" ><?php echo $review;?></textarea>
                            </div>
                         </div>
                         <div class="col-sm-6">
                            <div class="form-group">
-                              <input class="form-control" name="name" id="name" type="text" placeholder="Name">
+                              <span class="error">* <?php echo $nameErr;?></span>
+                              <input class="form-control" name="name" id="name" type="text" placeholder="Name" value="<?php echo $name;?>">      
                            </div>
                         </div>
                         <div class="col-sm-6">
                            <div class="form-group">
-                              <input class="form-control" name="email" id="email" type="email" placeholder="Email">
+                              <span class="error">* <?php echo $emailErr;?></span>
+                              <input class="form-control" name="email" id="email" type="email" placeholder="Email" value="<?php echo $email;?>">
                            </div>
                         </div>
-                       
+                        
                      </div>
                      <div class="form-group">
-                        <button type="submit" class="button button-contactForm btn_1 boxed-btn">Submit</button>
+                        <button type="submit" class="button button-contactForm btn_1 boxed-btn">Submit Review</button>
                      </div>
                   </form>
                </div>
-            </div>
-
-
-
-
-              
+                
+               </div>
+             
                <div class="comments-area">
-                  <h4>Reviews</h4>
-            
-               
-               <?php
-               $sql3 = "SELECT * FROM reviews WHERE menuId='".$_GET['menu']."' ";
-               $result3 = $conn->query($sql3);
+                  <h4>05 Comments</h4>
+                  <?php
+                        $sql3 = "SELECT * FROM reviews WHERE menuId='".$_GET['menu']."' ";
+                        $result3 = $conn->query($sql3);
 
-               if ($result3->num_rows > 0) {
-               // output data of each row
-               while($row3 = $result3->fetch_assoc()) {
-                  $name =  $row3["name"];
-                  $review =  $row3["review"];
-                  $rate=  $row3["rate"];
-                  $addeddate =  $row3["addeddate"];
+                        if ($result3->num_rows > 0) {
+                        // output data of each row
+                        while($row3 = $result3->fetch_assoc()) {
+                            $name =  $row3["name"];
+                            $review =  $row3["review"];
+                            $addeddate =  $row3["addeddate"];
 
 
-                  echo '<div class="comment-list">
-                  <div class="single-comment justify-content-between d-flex">
-                     <div class="user justify-content-between d-flex">
-                        <div class="thumb">
-                           <img src="in/department/restaurant/images/noimg/person.png" alt="">
-                        </div>
-                        <div class="desc">
-                           <p class="comment">
-                             '.$review.'
-                           </p>
-                           <div class="d-flex justify-content-between">
-                              <div class="d-flex align-items-center">
-                                 <h5>
-                                    <a href="#">'.$name.'</a>
-                                 </h5>
-                                 <p class="date"> '.$addeddate.'</p>
+                            echo '
+                        <div class="comment-list">
+                        <div class="single-comment justify-content-between d-flex">
+                           <div class="user justify-content-between d-flex">
+                              <div class="thumb">
+                                 <img src="img/comment/comment_1.png" alt="">
                               </div>
-                              <div class="reply-btn">
-                                 <a href="#" class="btn-reply text-uppercase">reply</a>
+                              <div class="desc">
+                                 <p class="comment">
+                                 '.$review.'
+                                 </p>
+                                 <div class="d-flex justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                       <h5>
+                                       <a href="#">'.$name.'</a>
+                                       </h5>
+                                       <p class="date"> '.$addeddate.'</p>
+                                    </div>
+                                   
+                                 </div>
                               </div>
                            </div>
                         </div>
                      </div>
-                  </div>
-               </div>';
+                        
+                        ';
 
 
-               }
-               } else {
-               echo "No Reviews.";
-               }
-               ?>
+                        }
+                        } else {
+                        echo "No Reviews.";
+                        }
+                        ?>
 
-
-
-
+                 
+            
                </div>
                
-          
+            </div>
+            <div class="col-lg-4">
+               <div class="blog_right_sidebar">
+                  <aside class="single_sidebar_widget search_widget">
+                     <form action="#">
+                        <div class="form-group">
+                           <div class="input-group mb-3">
+                              <input type="text" class="form-control" placeholder='Search Keyword'
+                                 onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Keyword'">
+                              <div class="input-group-append">
+                                 <button class="btn" type="button"><i class="ti-search"></i></button>
+                              </div>
+                           </div>
+                        </div>
+                        <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
+                           type="submit">Search</button>
+                     </form>
+                  </aside>
+                  <aside class="single_sidebar_widget post_category_widget">
+                     <h4 class="widget_title">Category</h4>
+                     <ul class="list cat-list">
+                        <li>
+                           <a href="#" class="d-flex">
+                              <p>Resaurant food</p>
+                              <p>(37)</p>
+                           </a>
+                        </li>
+                        <li>
+                           <a href="#" class="d-flex">
+                              <p>Travel news</p>
+                              <p>(10)</p>
+                           </a>
+                        </li>
+                        <li>
+                           <a href="#" class="d-flex">
+                              <p>Modern technology</p>
+                              <p>(03)</p>
+                           </a>
+                        </li>
+                        <li>
+                           <a href="#" class="d-flex">
+                              <p>Product</p>
+                              <p>(11)</p>
+                           </a>
+                        </li>
+                        <li>
+                           <a href="#" class="d-flex">
+                              <p>Inspiration</p>
+                              <p>(21)</p>
+                           </a>
+                        </li>
+                        <li>
+                           <a href="#" class="d-flex">
+                              <p>Health Care</p>
+                              <p>(21)</p>
+                           </a>
+                        </li>
+                     </ul>
+                  </aside>
+                  <aside class="single_sidebar_widget popular_post_widget">
+                     <h3 class="widget_title">Recent Post</h3>
+                     <div class="media post_item">
+                        <img src="img/post/post_1.png" alt="post">
+                        <div class="media-body">
+                           <a href="single-blog.html">
+                              <h3>From life was you fish...</h3>
+                           </a>
+                           <p>January 12, 2019</p>
+                        </div>
+                     </div>
+                     <div class="media post_item">
+                        <img src="img/post/post_2.png" alt="post">
+                        <div class="media-body">
+                           <a href="single-blog.html">
+                              <h3>The Amazing Hubble</h3>
+                           </a>
+                           <p>02 Hours ago</p>
+                        </div>
+                     </div>
+                     <div class="media post_item">
+                        <img src="img/post/post_3.png" alt="post">
+                        <div class="media-body">
+                           <a href="single-blog.html">
+                              <h3>Astronomy Or Astrology</h3>
+                           </a>
+                           <p>03 Hours ago</p>
+                        </div>
+                     </div>
+                     <div class="media post_item">
+                        <img src="img/post/post_4.png" alt="post">
+                        <div class="media-body">
+                           <a href="single-blog.html">
+                              <h3>Asteroids telescope</h3>
+                           </a>
+                           <p>01 Hours ago</p>
+                        </div>
+                     </div>
+                  </aside>
+                  <aside class="single_sidebar_widget tag_cloud_widget">
+                     <h4 class="widget_title">Tag Clouds</h4>
+                     <ul class="list">
+                        <li>
+                           <a href="#">project</a>
+                        </li>
+                        <li>
+                           <a href="#">love</a>
+                        </li>
+                        <li>
+                           <a href="#">technology</a>
+                        </li>
+                        <li>
+                           <a href="#">travel</a>
+                        </li>
+                        <li>
+                           <a href="#">restaurant</a>
+                        </li>
+                        <li>
+                           <a href="#">life style</a>
+                        </li>
+                        <li>
+                           <a href="#">design</a>
+                        </li>
+                        <li>
+                           <a href="#">illustration</a>
+                        </li>
+                     </ul>
+                  </aside>
+                  <aside class="single_sidebar_widget instagram_feeds">
+                     <h4 class="widget_title">Instagram Feeds</h4>
+                     <ul class="instagram_row flex-wrap">
+                        <li>
+                           <a href="#">
+                              <img class="img-fluid" src="img/post/post_5.png" alt="">
+                           </a>
+                        </li>
+                        <li>
+                           <a href="#">
+                              <img class="img-fluid" src="img/post/post_6.png" alt="">
+                           </a>
+                        </li>
+                        <li>
+                           <a href="#">
+                              <img class="img-fluid" src="img/post/post_7.png" alt="">
+                           </a>
+                        </li>
+                        <li>
+                           <a href="#">
+                              <img class="img-fluid" src="img/post/post_8.png" alt="">
+                           </a>
+                        </li>
+                        <li>
+                           <a href="#">
+                              <img class="img-fluid" src="img/post/post_9.png" alt="">
+                           </a>
+                        </li>
+                        <li>
+                           <a href="#">
+                              <img class="img-fluid" src="img/post/post_10.png" alt="">
+                           </a>
+                        </li>
+                     </ul>
+                  </aside>
+                  <aside class="single_sidebar_widget newsletter_widget">
+                     <h4 class="widget_title">Newsletter</h4>
+                     <form action="#">
+                        <div class="form-group">
+                           <input type="email" class="form-control" onfocus="this.placeholder = ''"
+                              onblur="this.placeholder = 'Enter email'" placeholder='Enter email' required>
+                        </div>
+                        <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
+                           type="submit">Subscribe</button>
+                     </form>
+                  </aside>
+               </div>
+            </div>
          </div>
       </div>
    </section>
@@ -400,6 +649,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                     </div>
             </form>
     <!-- form itself end -->
+
+
+  
+
 
 
    <!-- JS here -->

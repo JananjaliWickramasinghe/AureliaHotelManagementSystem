@@ -1,5 +1,5 @@
 <?php 
-include('in/connection.php');
+include('db/connection.php');
 ?>
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -113,7 +113,6 @@ include('in/connection.php');
             <div class="row">
                 <div class="col-lg-8 mb-5 mb-lg-0">
                     <div class="blog_left_sidebar">
-
                     <?php
                         $sql = "SELECT * FROM foodmenus";
                         $res = mysqli_query($conn, $sql);
@@ -125,10 +124,10 @@ include('in/connection.php');
                             if ($result2->num_rows > 0) {
                             // output data of each row
                             while($row = $result2->fetch_assoc()) {
-                              $URL = "in/department/restaurant/images/".$row["image_name"];           
+                              $URL = "../Hotel_Management_System/department/restaurant/images/".$row["image_name"];           
                             }
                             } else {
-                              $URL = "in/department/restaurant/images/noimg/NOIMAGE.jpg";      
+                              $URL = "../Hotel_Management_System/department/restaurant/images/noimg/NOIMAGE.jpg";      
                             }
                     ?>
                         
