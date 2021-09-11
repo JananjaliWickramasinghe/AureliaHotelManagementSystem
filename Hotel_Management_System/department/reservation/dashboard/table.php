@@ -1,3 +1,27 @@
+<?php
+require_once('../../connection.php');
+
+
+$today =  date("m/d/y");
+
+//task infor
+$taskid=rand(1000,9999);
+
+$_SESSION['taskid']=$taskid;
+
+//sql
+$getclients = "SELECT projectid,ProjectName,client,project,type FROM projects_topl WHERE task_type='TOPL' ORDER BY client DESC";
+$resultgetclients = $conn->query($getclients);
+//GET types
+$gettypes = "SELECT typeid,name,description FROM types_topl ORDER BY typeid DESC";
+$resultgettypes = $conn->query($gettypes);
+//GET Users
+$getusers = "SELECT uid_topl,firstname_topl,lastname_topl FROM users ORDER BY uid_topl ASC";
+$resultgetusers = $conn->query($getusers);
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
