@@ -60,12 +60,30 @@ $msg="";
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <ul class="nav side-menu">
-                  <li><a href="index.php?tab=home"><i class="fa fa-home"></i> Main <span class=""></span></a>
+                  <li><a href="index.php?tab=home"><i class="fa fa-home"></i> Home <span class=""></span></a>
 				          </li>
-                   <li><a><i class="fa fa-edit"></i>Users<span class="fa fa-chevron-down"></span></a>
+                   <li><a><i class="fa fa-edit"></i>Rooms<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="index.php?tab=manageusers">Manage Users</a></li>
-                      <li><a href="index.php?tab=createnewuser">Create New User</a></li>
+                      <li><a href="index.php?tab=manageroom">Manage Rooms</a></li>
+                      <li><a href="index.php?tab=createnewroom">Create New Room</a></li>
+                    </ul>
+                  </li>
+				  <li><a><i class="fa fa-edit"></i>Infrastructures<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="index.php?tab=manageinfrastructure">Manage Infrastructures</a></li>
+                      <li><a href="index.php?tab=createnewinfrastructure">Create New Infrastructures</a></li>
+                    </ul>
+                  </li>
+				  <li><a><i class="fa fa-edit"></i>Incomes<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="index.php?tab=manageincome">Manage Incomes</a></li>
+                      <li><a href="index.php?tab=createnewincome">Create New Income</a></li>
+                    </ul>
+                  </li>
+				  <li><a><i class="fa fa-edit"></i>Expenses<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="index.php?tab=manageexpenses">Manage Expenses</a></li>
+                      <li><a href="index.php?tab=createnewexpenses">Create New Expenses</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-bar-chart-o"></i>Report<span class="fa fa-chevron-down"></span></a>
@@ -124,12 +142,37 @@ $msg="";
                   <div class="clearfix">
                    <?php  
                     if ((empty($_GET)) or ($t=='home')) {
-                        include "dashboard/index.php";
-                      }else if ($t=='manageusers'){
-                        include "dashboard/table.php";
-                      } else if ($t=='createnewuser'){
-                        include "dashboard/create_new_user.php";                  
-                      } 
+                        include "dashboard/HMHome.php";
+                      }else if ($t=='manageroom'){
+                        include "dashboard/roomtable.php";
+                      } else if ($t=='createnewroom'){
+                        include "dashboard/create_new_room.php";                  
+                      } else if ($t=='manageinfrastructure'){
+                        include "dashboard/infrastructuretable.php";                  
+                      } else if ($t=='createnewinfrastructure'){
+                        include "dashboard/create_new_infrastructure.php";                  
+                      }  else if ($t=='Editroom'){
+                        include "dashboard/EditRoom.php";                  
+                      }  else if ($t=='searchroom'){
+                        include "dashboard/SearchRoom.php";                  
+                      } else if ($t=='searchinfrastructure'){
+                        include "dashboard/SearchInfrastructure.php";                  
+                      } else if ($t=='EditeditInfrastructure'){
+                        include "dashboard/EditInfrastructrue.php";                  
+                      } else if ($t=='createnewincome'){
+                        include "dashboard/create_new_income.php";                  
+                      } else if ($t=='createnewexpenses'){
+                        include "dashboard/create_new_expenses.php";                  
+                      } else if ($t=='manageincome'){
+                        include "dashboard/incometable.php";                  
+                      } else if ($t=='manageexpenses'){
+                        include "dashboard/expensestable.php";                  
+                      } else if ($t=='Editincome'){
+                        include "dashboard/EditIncome.php";                  
+                      } else if ($t=='Editexpenses'){
+                        include "dashboard/EditExpenses.php";                  
+                      }
+					  
                       
                     ?>
                     </div>
