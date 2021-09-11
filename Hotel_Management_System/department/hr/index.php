@@ -60,14 +60,21 @@ $msg="";
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <ul class="nav side-menu">
-                  <li><a href="index.php?tab=home"><i class="fa fa-home"></i> Main <span class=""></span></a>
+                  <li><a href="index.php?tab=home"><i class="fa fa-home"></i> Home <span class=""></span></a>
 				          </li>
-                   <li><a><i class="fa fa-edit"></i>Users<span class="fa fa-chevron-down"></span></a>
+                   <li><a><i class="fa fa-edit"></i>Employee<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="index.php?tab=manageusers">Manage Users</a></li>
-                      <li><a href="index.php?tab=createnewuser">Create New User</a></li>
+                      <li><a href="index.php?tab=manageemployee">Manage Employee</a></li>
+                      <li><a href="index.php?tab=createnewemployee">Create New Employee</a></li>
                     </ul>
                   </li>
+				  <li><a><i class="fa fa-edit"></i>Salary<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="index.php?tab=managesalary">Manage Salary</a></li>
+                      <li><a href="index.php?tab=createnewsalary">Create New Salary</a></li>
+                    </ul>
+                  </li>
+				  
                   <li><a><i class="fa fa-bar-chart-o"></i>Report<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
 					            <li><a href="index.php?tab=report_gen_monthly">Get Full Report</a></li>
@@ -124,12 +131,24 @@ $msg="";
                   <div class="clearfix">
                    <?php  
                     if ((empty($_GET)) or ($t=='home')) {
-                        include "dashboard/index.php";
-                      }else if ($t=='manageusers'){
-                        include "dashboard/table.php";
-                      } else if ($t=='createnewuser'){
-                        include "dashboard/create_new_user.php";                  
-                      } 
+                        include "dashboard/HRHome.php";
+                      }else if ($t=='manageemployee'){
+                        include "dashboard/employeetable.php";
+                      } else if ($t=='createnewemployee'){
+                        include "dashboard/create_new_employee.php";                  
+                      } else if ($t=='managesalary'){
+                        include "dashboard/salarytable.php";
+                      } else if ($t=='createnewsalary'){
+                        include "dashboard/create_new_salary.php";                  
+                      } else if ($t=='searchemployee'){
+                        include "dashboard/SearchEmployee.php";                  
+                      } else if ($t=='searchsalary'){
+                        include "dashboard/SearchSalary.php";                  
+                      } else if ($t=='EditEmployee'){
+                        include "dashboard/EditEmployee.php";                  
+                      } else if ($t=='EditSalary'){
+                        include "dashboard/EditSalary.php";                  
+                      }
                       
                     ?>
                     </div>
