@@ -19,36 +19,16 @@ $resultgettypes = $conn->query($gettypes);
 $getusers = "SELECT uid_topl,firstname_topl,lastname_topl FROM users ORDER BY uid_topl ASC";
 $resultgetusers = $conn->query($getusers);
 
+$start_date_error ='';
+$end_date_error ='';
 
-if (isset($_POST['submit'])){
-	
-	
-	
-	$date = $_POST['date'];
-	$section = $_POST['section'];
-	$amount = $_POST['amount'];
-	
-	
-				$sql = "INSERT INTO income(date,section,amount) VALUES('$date','$section','$amount')";
-	
-				if(mysqli_query($conn,$sql))
-					{
-						echo "<script> alert('Record Add successfully');</script>";
-						
-		
-					}
-				else
-					{
-						echo "<script> alert('Error : Could not save the data');</script>";
-					}
-				
-}
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Create new Income</title>
+<title>Generate Income Report</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/css_subpage.css">
@@ -60,17 +40,8 @@ if (isset($_POST['submit'])){
   margin: auto;
 }
 
-select {
-        width: 100%;
-		height:40px;
-        margin: 8px;
-    }
-    select:focus {
-        min-width: 100%;
-		height:40px;
-        width: auto;
-    }
-</style>
+
+</style>	
 </head>
 <body>
 
@@ -80,32 +51,31 @@ select {
 <div class="contentform">
   <div class="containerform">
 
-  <h2 class="subtitle">Create new Income</h2>
+  <h2 class="subtitle">Generate Income Report</h2>
 
   <hr>
   
-      <form id="fupForm" name="form1"  method = "post">
+      <form name="form1"  method = "post" action = "dashboard/ExportIncome.php">
           
 		    
-			Date: 
-			<input type="date" cols="40" rows="5" name="date" required>
+			Start Date: 
+			<input type="date"  name="sdate" required>
+			<?php echo $start_date_error; ?>
 		    <br><br>
-		    Section:<br>
-			<select  name = "section" required>
-				<option>choose..</option>
-				<option>Resturent</option>
-				<option>Reservation</option>
-			</select>
-			<br><br>
-            Amount: 
-			<input type="number" name="amount"  required>
+			
+			End Date: 
+			<input type="date"  name="edate" required>
+			<?php echo $end_date_error; ?>
 		    <br><br>
+		    
 			
 			
             <div class="row">
-            <input name="submit" type="submit" value="Submit"  id="butsave">
+            <input name="report" type="submit" value="Generate Report"  id="butsave">
             </div>
        </form>
+	   
+	   <hr>
   
        <div id="loader-icon" style="display: none;">
           <img src="../img/loader.gif" />
