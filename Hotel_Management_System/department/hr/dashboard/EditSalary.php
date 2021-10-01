@@ -56,15 +56,17 @@ if (isset($_POST['update'])){
 	if(mysqli_query($conn,$sql))
 	{
 		echo "<script> alert('Record Update successfully');</script>";
+		echo '<script> location.replace("index.php?tab=managesalary");</script>';
 	}	
 	else
 	{
 		echo "<script> alert('Error : Could not save the data');</script>";
+		echo '<script> location.replace("index.php?tab=managesalary");</script>';
 		
 	}
 	
 	
-	header("location:../6index.php?tab=managesalary");
+	//header("location:../6index.php?tab=managesalary");
 }
 
 

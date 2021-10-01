@@ -39,6 +39,13 @@ if (isset($_POST['update'])){
 	$basicsalary = $_POST['basicsalary'];
 	$workhrs = $_POST['workhrs'];
 	
+	$num_length = strlen((String)$phone);
+	
+	if($num_length == 10)
+	{
+		if($workhrs<300)
+		{
+	
 	$sql = "UPDATE employeem SET e_id='$eid',fname='$fname',lname='$lname',address='$address',phone='$phone',role='$role',basicsalary=$basicsalary,
 	        workhrs='$workhrs' where id = $id";
 	        
@@ -47,11 +54,24 @@ if (isset($_POST['update'])){
 	if(mysqli_query($conn,$sql))
 	{
 		echo "<script> alert('Record Update successfully');</script>";
+		echo '<script> location.replace("index.php?tab=manageemployee");</script>';
 		//header ("Location:./index.php?tab=manageemployee");
 	}
 	else
 	{
 		echo "<script> alert('Error : Could not save the data');</script>";
+		echo '<script> location.replace("index.php?tab=manageemployee");</script>';
+	}
+		}
+		else{
+			echo "<script> alert('Working hours must be less than 300H..');</script>";
+			echo '<script> location.replace("index.php?tab=manageemployee");</script>';
+		}
+		
+	}
+	else{
+		echo "<script> alert('Invalid phone number');</script>";
+		echo '<script> location.replace("index.php?tab=manageemployee");</script>';
 	}
 	
 	//mysqli_close($conn);
@@ -72,15 +92,22 @@ if (isset($_POST['update'])){
   max-width: 60% auto;
   margin: auto;
 }
+
+select {
+        width: 100%;
+		height:40px;
+        margin: 8px;
+    }
+    select:focus {
+        min-width: 100%;
+		height:40px;
+        width: auto;
+    }
 </style>
 </head>
 <body>
 
-<div class="topnav">
-  <a href="#">Link</a>
-  <a href="#">Link</a>
-  <a href="#">Link</a>
-</div>
+
 <br>
 
 <div class="contentform">

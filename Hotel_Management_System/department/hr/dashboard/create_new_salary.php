@@ -77,11 +77,6 @@ if (isset($_POST['submit'])){
 </head>
 <body>
 
-<div class="topnav">
-  <a href="#">Link</a>
-  <a href="#">Link</a>
-  <a href="#">Link</a>
-</div>
 <br>
 
 <div class="contentform">
