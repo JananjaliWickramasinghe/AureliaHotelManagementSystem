@@ -9,7 +9,6 @@
     margin-bottom: 3rem;
 }
 
-
 .input-group {
     border-radius: 30rem;
 }
@@ -35,3 +34,6 @@ input.form-control::placeholder {
 .datepicker-dropdown {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
+
+/*--------------------------------------------------------------------*/
+
