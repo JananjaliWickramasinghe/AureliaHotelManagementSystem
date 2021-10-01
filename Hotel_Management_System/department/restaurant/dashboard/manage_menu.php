@@ -37,21 +37,19 @@ if (isset($_GET['action'])){
   
 }
 </style>
-
 </head>
 <body>
 <div class="contentform">
   <h2 class="subtitle">Manage Menu</h2>
   <hr>
     <div class="container center">
-   
+    <hr>
       <?php
       if (mysqli_num_rows($result) > 0) {
       ?>
         <table class="table table-hover table-responsive">
         <thead>
         <tr>
-       
           <td><b>Menu ID</b></td>
           <td><b>Menu</b></td>
           <td><b>Category</b></td>
@@ -59,7 +57,6 @@ if (isset($_GET['action'])){
           
           <td></td>
           <td></td>
-
         </tr>
         </thead>
         <tbody>
