@@ -6,12 +6,12 @@ require_once('../../connection.php');
 if(isset($_POST['search']) || ($_POST['search'] !=="")){
 	$valueTosearch = $_POST['valueTosearch'];
 	//echo '<script type="text/javascript">alert("'.$valueTosearch.'");</script>';
-	$query = "select * from room where id =$valueTosearch";
+	$query = "select * from rooms where id =$valueTosearch";
 	$search_result = filterTable($query);
 	
 }else{
 
-	$query = "SELECT * FROM room";
+	$query = "SELECT * FROM rooms";
 	$search_result = filterTable($query);
 }
 

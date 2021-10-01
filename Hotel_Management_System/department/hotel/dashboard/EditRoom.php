@@ -3,7 +3,7 @@ require_once('../../connection.php');
 
 if(isset($_POST['editRoom'])){
 	$Rid = $_POST['room_id'];
-	$select = mysqli_query($conn,"select * from room where id = '$Rid'");
+	$select = mysqli_query($conn,"select * from rooms where id = '$Rid'");
 	$row = mysqli_fetch_assoc($select);
 }
 
@@ -44,7 +44,7 @@ if (isset($_POST['submit'])){
 	if(($oldimage == $newimage)||($newimage == "")){
 		echo "<script> alert('Same Image');</script>";
 		
-		$sql = "UPDATE room SET r_id='$r_id',ac_nac='$ac_nac',description='$des',image='$oldimage' where id = '$id'";
+		$sql = "UPDATE rooms SET r_id='$r_id',ac_nac='$ac_nac',description='$des',image='$oldimage' where id = '$id'";
 	        
 	      
 			if(mysqli_query($conn,$sql))
@@ -61,7 +61,7 @@ if (isset($_POST['submit'])){
 	}
 	else if($oldimage !== $newimage){
 		
-		$sql1 = "SELECT * FROM room where '$id'";
+		$sql1 = "SELECT * FROM rooms where '$id'";
 	    
 		$result = mysqli_query($conn,$sql1);
 				  
@@ -102,7 +102,7 @@ if (isset($_POST['submit'])){
 					if(move_uploaded_file($_FILES['newimage']['tmp_name'], $target)){
 				
 						
-						$sql = "UPDATE room SET r_id='$r_id',ac_nac='$ac_nac',description='$des',image='$newimage' where id = '$id'";
+						$sql = "UPDATE rooms SET r_id='$r_id',ac_nac='$ac_nac',description='$des',image='$newimage' where id = '$id'";
 	
 							if(mysqli_query($conn,$sql))
 								{
