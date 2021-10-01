@@ -21,49 +21,94 @@ $resultgetusers = $conn->query($getusers);
 
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Booking Calendar</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/css_subpage.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/forms.css" />
+<style>
+.contentform {
+  max-width: 60% auto;
+  margin: auto;
+}
+
+body {
+    color: #000;
+    overflow-x: hidden;
+    height: 100%;
+    background-repeat: no-repeat;
+    padding: 0 !important
+}
+
+.container {
+    padding-top: 20px;
+    padding-bottom: 340px;
+	height: 50%
+
+}
+
+.datePick{
+	padding-top: 20px;
+    padding-bottom: 340px;
+	padding-left: 50px;
+	height:350px;
+	background: linear-gradient(45deg, #49a09d, #5f2c82)
+}
+	
+.heading {
+  padding: 20px;
+  text-align: left;
+  background: white;
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+table{
+	margin-top:50px;
+	margin-left:100px;
+	width:80%;
+}
+</style>
 </head>
 <body>
+	<div class="container">
+		<div class="heading">Booking Calendar</div>
+			<div class="datePick">
+				<form method="post" action="index.php?tab=get_available_rooms">
+					<table>
+						<tr>
+							<td>
+								<div class="form-group col-md-4">
+									<label for="cin">Checkin Date</label>
+									<input type="date" id="checkin" name="checkin" value="<?php echo date('Y-m-d');?>">
+								</div>
 
-
-  <h2>Booking Calendar</h2>
-  
-
-  <table>
-		<tr>
-		<td>
-      <div class="col-md-12">
-		      <div class = "form-group col-md-12 ">
-              <input type="date" id="checkoutDate" name="checkoutDate" value="<?php echo date('Y-m-d');?>">
-          </div>
-		  </div>
-    </td>
-
-		</tr>
-
-    <tr>
-		<td>
-      <div class="col-md-12">
-		      <div class = "form-group col-md-12 ">
-          <div class="flex-row d-flex justify-content-center">
-              <button class="buttonCalendar">Check Available Rooms</button>	
-              </div>
-          </div>
-		  </div>
-    </td>
-
-		
-		</tr>
-		</table>
-
-
-
-
-
+								<div class="form-group col-md-4">
+									<label for="cout">Checkout Date</label>
+									<input type="date" id="checkout" name="checkout" value="<?php echo date('Y-m-d');?>">
+								</div>  
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="col-md-12">
+									<div class = "form-group col-md-6 ">
+										<div class="flex-row d-flex justify-content-center">
+										<button class="buttonCalendar" name="checkRooms">Check Available Rooms</button>	
+										</div>
+									</div>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>	
+		</div>	
 </body>
 </html>

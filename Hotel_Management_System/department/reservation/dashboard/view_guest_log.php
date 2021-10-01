@@ -28,12 +28,65 @@ $resultgetusers = $conn->query($getusers);
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+
+body {
+    color: #000;
+    overflow-x: hidden;
+    height: 100%;
+    background-repeat: no-repeat;
+    padding: 0 !important
+}
+
+.container {
+    padding-top: 20px;
+    padding-bottom: 340px;
+	height: 70%
+
+}
+
+.datePick{
+	padding-top: 20px;
+    padding-bottom: 340px;
+	padding-left: 50px;
+	padding-right: 50px;
+	height: 70%;
+	background-color: #C5CAE9
+}
+
+th {
+  background-color:#3b3f69;
+  color: white;
+}	
+
+tr:hover {background-color: white;}
+
+table{
+	width;80%;
+}
+
+.heading {
+  padding: 10px;
+  text-align: left;
+  color: black;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.search{
+	padding:10px;
+  text-align: left;
+  color: black;
+}
+</style>
 </head>
 <body>
 
 <div class="container">
-  <h2>View Guest Log</h2>
+  <div class="heading">View Guest Log
+  </div>
   
+  <div class="search">
   <!-- search guests -->
   <form action="index.php?tab=search_guest" method="post">  
 	<table>
@@ -51,6 +104,8 @@ $resultgetusers = $conn->query($getusers);
 		</tr>
 		</table>
 	</form>
+  </div>
+  
 
   <table class="table table-bordered">
     <thead>
@@ -99,9 +154,9 @@ $resultgetusers = $conn->query($getusers);
                           <td><?php echo $userRow['email']; ?></td>
                           <td>
 
-							        <input type="hidden" name="guest_id" value="<?php echo $userRow['guest_id']; ?>"/>
-							        <input type="submit" class="btn btn-success" name="edit" value="Edit"/>
-                      <input type="submit" class="btn btn-danger" name="delete" value="Delete"/>
+						<input type="hidden" name="guest_id" value="<?php echo $userRow['guest_id']; ?>"/>
+						<input type="submit" class="btn btn-success" name="edit" value="Edit"/>
+                        <input type="submit" class="btn btn-danger" name="delete" value="Delete"/>
                 </form>
 						  </td>
 
