@@ -88,11 +88,13 @@ $msg="";
                   </li>
                   <li><a><i class="fa fa-bar-chart-o"></i>Report<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-					            <li><a href="index.php?tab=report_gen_monthly">Get Full Report</a></li>
-                      <li><a href="index.php?tab=report_gen_home">Report Generate Main</a></li>
-                      <li><a href="index.php?tab=report_gen_daily">Get per Day Report</a></li>
-                      <li><a href="index.php?tab=report_gen_search_std">Get by Student</a></li>
-                      <li><a href="report_gen/report_gen_barchart_sel.php">View Chart</a></li>
+					   <li><a href="index.php?tab=report_income">Income</a></li>
+					   <li><a href="index.php?tab=report_expenses">Expenses</a></li>
+					 <!--  <li><a href="index.php?tab=report_gen_monthly">Get Full Report</a></li>
+                       <li><a href="index.php?tab=report_gen_home">Report Generate Main</a></li>
+                       <li><a href="index.php?tab=report_gen_daily">Get per Day Report</a></li>
+                       <li><a href="index.php?tab=report_gen_search_std">Get by Student</a></li>
+                       <li><a href="report_gen/report_gen_barchart_sel.php">View Chart</a></li>-->
                     </ul>
                   </li>
 				          <li><a href="index.php?tab=payment_home"><i class="fa fa-table"></i> Settings <span class=""></span></a></li>    
@@ -171,6 +173,14 @@ $msg="";
                         include "dashboard/EditIncome.php";                  
                       } else if ($t=='Editexpenses'){
                         include "dashboard/EditExpenses.php";                  
+                      } else if ($t=='report_income'){
+                        include "dashboard/ReportIncome.php";                  
+                      } else if ($t=='report_expenses'){
+                        include "dashboard/ReportExpenses.php";                  
+                      } else if ($t=='searchincome'){
+                        include "dashboard/SearchIncome.php";                  
+                      } else if ($t=='searchexpenses'){
+                        include "dashboard/SearchExpenses.php";                  
                       }
 					  
                       
