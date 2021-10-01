@@ -46,7 +46,6 @@ $today =  date("m/d/y");
     $button ='Update Menu';
 
    
-
   }
 
 //Insert Data to DB
@@ -108,7 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       }else
       {
-        //display error
+        echo '<script>alert("Menu Image upload failed!");</script>';
       }
     }
 
@@ -267,7 +266,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="col-75">
              <div class="form-group col-md-8">
               <div class="center">
-               <input name="submit" type="submit" value="<?php echo $button;?>"  id="butsave">
+               <input name="submit" type="submit" value="<?php echo $button;?>"  id="butsave" class="blue">
               </div>
              </div>
             </div> 
