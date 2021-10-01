@@ -33,8 +33,12 @@ if (isset($_POST['submit'])){
 	$basicsalary = $_POST['basicsalary'];
 	$workhrs = $_POST['workhrs'];
 	
+	$num_length = strlen((String)$phone);
 	
-		
+	if($num_length == 10)
+	{
+		if($workhrs<300)
+		{
 				$sql = "INSERT INTO employeem(e_id,fname,lname,address,phone,role,basicsalary,workhrs) VALUES('$eid','$fname','$lname','$address','$phone','$role','$basicsalary','$workhrs')";
 	
 				if(mysqli_query($conn,$sql))
@@ -46,8 +50,18 @@ if (isset($_POST['submit'])){
 					{
 						echo "<script> alert('Error : Could not save the data');</script>";
 					}
+		}
+		else{
+			echo "<script> alert('Working hours must be less than 300H..');</script>";
 			
-		
+		}
+			
+	}
+     else
+	 {
+		 echo "<script> alert('Invalid phone number');</script>";
+	
+	 }		 
 }
 ?>
 
@@ -65,15 +79,21 @@ if (isset($_POST['submit'])){
   max-width: 60% auto;
   margin: auto;
 }
+
+select {
+        width: 100%;
+		height:40px;
+        margin: 8px;
+    }
+    select:focus {
+        min-width: 100%;
+		height:40px;
+        width: auto;
+    }
 </style>
 </head>
 <body>
 
-<div class="topnav">
-  <a href="#">Link</a>
-  <a href="#">Link</a>
-  <a href="#">Link</a>
-</div>
 <br>
 
 <div class="contentform">
@@ -98,8 +118,10 @@ if (isset($_POST['submit'])){
 			<input type="text" name="address" required>
 		    <br><br>
 			Phone: 
-			<input type="text" name="phone" required>
-		    <br><br>
+			<input type="number" name="phone" required>
+		    <br>
+			
+			<br>
 		    Role:<br>
 			<select  name = "role" required>
 				<option id="" value="">select....</option>
@@ -115,7 +137,9 @@ if (isset($_POST['submit'])){
 			
 			 Working Hours: 
 			<input type="text" name="workhrs" required></textarea>
-		    <br><br>
+		    <br>
+			
+			<br>
 			
             <div class="row">
             <input name="submit" type="submit" value="Submit"  id="butsave">
