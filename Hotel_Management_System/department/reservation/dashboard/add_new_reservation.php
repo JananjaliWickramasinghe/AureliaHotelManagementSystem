@@ -86,8 +86,10 @@ if(isset($_POST['addNewGuest'])){
 <style>
 .contentform {
   max-width: 60% auto;
-  margin: auto;
+  marigin-right:100px;
+  
 }
+
 </style>
 </head>
 <body>

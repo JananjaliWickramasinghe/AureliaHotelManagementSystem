@@ -27,6 +27,23 @@ $resultgetusers = $conn->query($getusers);
   <title>Report Summary</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+  .heading {
+  padding: 10px;
+  text-align: left;
+  color: black;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.tab-sub-heading{
+	text-align:right;
+	color: #231961;
+	font-size: 15px;
+	font-weight: bold;	
+}
+
+  </style>
 </head>
 <body>
 
@@ -36,6 +53,7 @@ $resultgetusers = $conn->query($getusers);
   <div class="container">
   
 <div class="container">
+
 <div class="row">
     <div class="col-lg-12">
         <div class="wrapper wrapper-content animated fadeInRight">
@@ -45,9 +63,21 @@ $resultgetusers = $conn->query($getusers);
 
                 <div class="forum-title">
                     <div class="pull-right forum-desc">
-                        <samll>Total reservations: 167</samll>
+                        <p class="tab-sub-heading">Total reservations:
+						<?php
+								$count =0;
+								$sql = "SELECT booking_id From Booking";
+								$result= mysqli_query($conn,$sql);
+							while($row=mysqli_fetch_array($result))
+								{	
+								$count++;
+								}
+								echo $count;
+						?>
+						</p>
                     </div>
-                    <h3>Report Summary</h3>
+					<div class="heading">Report Summary
+					</div>
                 </div>
 
                 <div class="forum-item active">
@@ -56,12 +86,22 @@ $resultgetusers = $conn->query($getusers);
                             <div class="forum-icon">
                                 <i class="fa fa-shield"></i>
                             </div>
-                            <a href="forum_post.html" class="forum-item-title">Total Reservation</a>
-                            <div class="forum-sub-title">Upto</div>
+                            <a href="forum_post.html" class="forum-item-title">Total Reservations</a>
+                            <div class="forum-sub-title">confirmed, cancelled and awaited</div>
                         </div>
                         <div class="col-md-1 forum-info">
                             <span class="views-number">
-                                1216
+                              
+							<?php
+								$count =0;
+								$sql = "SELECT booking_id From Booking WHERE book_status='confirmed'";
+								$result= mysqli_query($conn,$sql);
+							while($row=mysqli_fetch_array($result))
+								{	
+								$count++;
+								}
+								echo $count;
+							?>	
                             </span>
                             <div>
                                 <p>Confirmed</p>
@@ -69,7 +109,17 @@ $resultgetusers = $conn->query($getusers);
                         </div>
                         <div class="col-md-1 forum-info">
                             <span class="views-number">
-                                368
+                                
+								<?php
+								$count =0;
+								$sql = "SELECT booking_id From Booking WHERE book_status='hold'";
+								$result= mysqli_query($conn,$sql);
+							while($row=mysqli_fetch_array($result))
+								{	
+								$count++;
+								}
+								echo $count;
+							?>
                             </span>
                             <div>
                                 <p>Awaited</p>
@@ -77,7 +127,17 @@ $resultgetusers = $conn->query($getusers);
                         </div>
                         <div class="col-md-1 forum-info">
                             <span class="views-number">
-                                140
+                               
+								<?php
+								$count =0;
+								$sql = "SELECT booking_id From Booking WHERE book_status='cancelled'";
+								$result= mysqli_query($conn,$sql);
+							while($row=mysqli_fetch_array($result))
+								{	
+								$count++;
+								}
+								echo $count;
+							?>
                             </span>
                             <div>
                                 <p>Cancelled</p>
@@ -96,7 +156,16 @@ $resultgetusers = $conn->query($getusers);
                         </div>
                         <div class="col-md-1 forum-info">
                             <span class="views-number">
-                                890
+                            <?php
+								$count =0;
+								$sql = "SELECT booking_id From Booking WHERE sourceType='website'";
+								$result= mysqli_query($conn,$sql);
+							while($row=mysqli_fetch_array($result))
+								{	
+								$count++;
+								}
+								echo $count;
+							?>
                             </span>
                             <div>
                                 <p>Website</p>
@@ -104,7 +173,16 @@ $resultgetusers = $conn->query($getusers);
                         </div>
                         <div class="col-md-1 forum-info">
                             <span class="views-number">
-                                120
+                                <?php
+								$count =0;
+								$sql = "SELECT booking_id From Booking WHERE sourceType='walk-in'";
+								$result= mysqli_query($conn,$sql);
+							while($row=mysqli_fetch_array($result))
+								{	
+								$count++;
+								}
+								echo $count;
+							?>
                             </span>
                             <div>
                                 <p>Walk-in</p>
@@ -112,10 +190,19 @@ $resultgetusers = $conn->query($getusers);
                         </div>
                         <div class="col-md-1 forum-info">
                             <span class="views-number">
-                                154
+                                <?php
+								$count =0;
+								$sql = "SELECT booking_id From Booking WHERE sourceType='by-call'";
+								$result= mysqli_query($conn,$sql);
+							while($row=mysqli_fetch_array($result))
+								{	
+								$count++;
+								}
+								echo $count;
+							?>
                             </span>
                             <div>
-                                <p>On call</p>
+                                <p>By call</p>
                             </div>
                         </div>
                     </div>
@@ -125,30 +212,30 @@ $resultgetusers = $conn->query($getusers);
                 <div class="p-xs">
                     
                     <h2>Generate Reports</h2>
+					
                     <div class="pull-right m-r-md">
   
                     </div>
 
     
-            <form>
+            <form method="POST" action="index.php?tab=view_report">
             <div class="row">
             <div class="col-25">
              
             </div>
             <div class="col-75">
               <div class="form-group col-md-4">
- 
                 <select  name="month" class = "form-control" required>
                     <option value="" selected="selected" disabled="">By month</option>
-                    <option value='1'>January</option>
-                    <option value='2'>February</option>
-                    <option value='3'>March</option>
-                    <option value='4'>April</option>
-                    <option value='5'>May</option>
-                    <option value='6'>June</option>
-                    <option value='7'>July</option>
-                    <option value='8'>August</option>
-                    <option value='9'>September</option>
+                    <option value='01'>January</option>
+                    <option value='02'>February</option>
+                    <option value='03'>March</option>
+                    <option value='04'>April</option>
+                    <option value='05'>May</option>
+                    <option value='06'>June</option>
+                    <option value='07'>July</option>
+                    <option value='08'>August</option>
+                    <option value='09'>September</option>
                     <option value='10'>October</option>
                     <option value='11'>November</option>
                     <option value='12'>December</option>
@@ -156,18 +243,18 @@ $resultgetusers = $conn->query($getusers);
               </div>
 
               <div class="form-group col-md-4">
- 
                 <select  name="source" class = "form-control" required>
-		            <option value="" selected="selected" disabled="">By source</option>
-                    <option value='10'>cancelled</option>
-                    <option value='10'>confirmed</option>
-                    <option value='10'>On-call</option>
+		            <option value="" selected="selected" disabled="">Type</option>
+                    <option value="bySource">Monthly Reservation by Source Report</option>
+                    <option value='byRoom'>Monthly Reservation Report</option>
 			    </select>
               </div>
             </div>
+			
+			
 
             <div class="form-group col-md-4">
-            <button class="btn btn-success"><i class="fa fa-file-text-o"></i> Generate Report</button>
+            <button class="btn btn-success" name="report"><i class="fa fa-file-text-o"></i> Generate Report</button>
 
             </div>
 

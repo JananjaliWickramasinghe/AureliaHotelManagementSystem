@@ -34,8 +34,6 @@ if (isset($_POST['edit'])) {
     $updateRow=mysqli_fetch_array($up,MYSQLI_ASSOC);
     $updateRoom=mysqli_fetch_array($room,MYSQLI_ASSOC);
 
-
-
   echo $updateRoom['room_name'];
   echo $updateRow['sourceType'];
 	
@@ -112,6 +110,8 @@ if (isset($_POST['delete'])) {
 	
 }	 
 ?>
+
+
 
 <?php
 if(isset($_POST['update'])){ 
