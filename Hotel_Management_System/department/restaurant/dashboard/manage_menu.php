@@ -7,7 +7,6 @@ if (isset($_GET['action'])){
     $menu = $_GET['menu'];
     $sql = "DELETE FROM foodmenus WHERE menuId='".$menu."'";
     if ($conn->query($sql) === TRUE) {
-      
       echo '<script>alert("Record deleted successfully!");</script>';
       echo '<script>location.replace("index.php?tab=managemenu");</script>';
     } else {
@@ -20,10 +19,9 @@ if (isset($_GET['action'])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../css/css_subpage.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../css/css_subpage.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/forms.css" />
 <style>
@@ -31,7 +29,6 @@ if (isset($_GET['action'])){
   max-width: 60% auto;
  
 }
-
 .center {
   margin: auto;
   width: 80%;
@@ -39,11 +36,7 @@ if (isset($_GET['action'])){
   padding: 10px;
   
 }
-
-
 </style>
-
-
 
 </head>
 <body>
@@ -58,6 +51,7 @@ if (isset($_GET['action'])){
         <table class="table table-hover table-responsive">
         <thead>
         <tr>
+       
           <td><b>Menu ID</b></td>
           <td><b>Menu</b></td>
           <td><b>Category</b></td>
@@ -74,14 +68,14 @@ if (isset($_GET['action'])){
       while($row = mysqli_fetch_array($result)) {
       ?>
       <tr>
-          <td><?php echo $row["menuId"]; ?></td>
+          <td><a href="../Hotel%20Website/menu_details.php?menu=<?php echo $row["menuId"]; ?>" target="_parent"><?php echo $row["menuId"]; ?></a></td>
           <td><?php echo $row["name"]; ?></td>
           <td><?php echo $row["category"]; ?></td>
           <td><?php echo $row["shortdescription"]; ?></td>
-     
-          <td><a href="index.php?tab=editmenu&menu=<?php echo $row["menuId"]; ?>&action=edit"><input name="submit" type="submit" value="Edit"  id="butsave"></a></td>
-          <td><a href="index.php?tab=managemenu&menu=<?php echo $row["menuId"]; ?>&action=delete" ><input name="submit" type="submit" value="Delete"  id="butdelete"></a></td>
-        
+          <td><a href="index.php?tab=editmenu&menu=<?php echo $row["menuId"]; ?>&action=edit"><input name="submit" type="submit" value="Edit"  id="butsave" class="approve"></a></td>
+          <td><a href="index.php?tab=managemenu&menu=<?php echo $row["menuId"]; ?>&action=delete" ><input name="submit" type="submit" value="Delete"  id="butdelete" class="reject"></a></td>
+          <td><a href="http://localhost:8081/HotelManagementSystem/Hotel%20Website/menu_details.php?menu=<?php echo $row["menuId"]; ?>" target="_blank"><input name="submit" type="submit" value="View on web"  id="view" class="yellow"></a></td>
+          
       </tr>
       <?php
       $i++;
@@ -94,7 +88,6 @@ if (isset($_GET['action'])){
           echo "No result found";
       }
       ?>
-
 
     </div>
   </div>

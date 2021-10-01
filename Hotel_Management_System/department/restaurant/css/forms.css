@@ -35,9 +35,40 @@
     display: inline-block;
   }
   
-  input[type=submit] {
+  .blue{
     background-color: #1c48a8;
     color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+  }
+  .yellow{
+
+    background-color: #e9d200;
+    color: rgb(0, 0, 0);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+  }
+
+  .approve {
+
+    background-color: #00ad00;
+    color: rgb(255, 255, 255);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+  }
+
+  .reject {
+    background-color: #da0505;
+    color: rgb(255, 255, 255);
     padding: 10px 20px;
     border: none;
     border-radius: 4px;

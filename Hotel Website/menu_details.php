@@ -1,6 +1,6 @@
 <?php
 require_once('db/connection.php');
-
+$status ='';
  if ($_GET['menu']){
 
     $sql = "SELECT * FROM foodmenus WHERE menuId='".$_GET['menu']."' ";
@@ -8,13 +8,13 @@ require_once('db/connection.php');
 
     if ($result->num_rows > 0) {
     // output data of each row
-    while($row = $result->fetch_assoc()) {
-       $name =  $row["name"];
-       $des =  $row["description"];
-       $sdes =  $row["shortdescription"];
-       $category =  $row["category"];
-       $price =  $row["price"];
-       $addeddate =  $row["addeddate"];
+    while($row2 = $result->fetch_assoc()) {
+       $nametitle =  $row2["name"];
+       $des =  $row2["description"];
+       $sdes =  $row2["shortdescription"];
+       $category =  $row2["category"];
+       $price =  $row2["price"];
+       $addeddate =  $row2["addeddate"];
     }
     } else {
     echo "0 results";
@@ -71,19 +71,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $date = date("Y-m-d");
     $menuid = $_GET['menu'];
   //Send data to database
-  if ($_GET['menu']){
-    $sql = "INSERT INTO reviews (name, review, email,addeddate,menuId)
-    VALUES ('".$name."', '".$review."', '".$email."','".$date."','".$menuid."')";
+  if (empty($_GET['menu']) OR empty($_POST["name"]) OR empty($_POST["email"]) OR empty($_POST["review"])){
+   $status ='Please fill all the fields!.';
+  
+  }else {
+   $sql = "INSERT INTO reviews (name, review, email,addeddate,menuId)
+   VALUES ('".$name."', '".$review."', '".$email."','".$date."','".$menuid."')";
 
-    if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
-    echo "alart('done')";
-    } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-    echo "alart('not done')";
-    }
+   if ($conn->query($sql) === TRUE) {
+   $status = 'Review successfully submitted!.';
+  
+   } else {
+   $status ="Error: " . $sql . "<br>" . $conn->error;
 
-  }
+   }
+  
+ }
 
 
 
@@ -128,6 +131,7 @@ function test_input($data) {
    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
    <style>
 .error {color: #FF0000;}
+
 </style>
 </head>
 
@@ -201,7 +205,7 @@ function test_input($data) {
 
   <!-- bradcam_area_start -->
   <div class="bradcam_area breadcam_bg">
-      <h3>single blog</h3>
+      <h3><?php echo $nametitle;?></h3>
   </div>
   <!-- bradcam_area_end -->
 
@@ -211,6 +215,9 @@ function test_input($data) {
          <div class="row">
             <div class="col-lg-8 posts-list">
                <div class="single-post">
+               <h3><?php echo $nametitle;?></h3>
+               <br>
+               <hr>
                   <div class="feature-img">
                     <img class="img-fluid" src="<?php echo $URL;?>" alt="">
                   </div>
@@ -232,8 +239,7 @@ function test_input($data) {
                </div>
                <div class="navigation-top">
                   <div class="d-sm-flex justify-content-between text-center">
-                     <p class="like-info"><span class="align-middle"><i class="fa fa-heart"></i></span> Lily and 4
-                        people like this</p>
+                     <p class="like-info"><span class="align-middle"><i class="fa fa-heart"></i></span> Popular </p>
                      <div class="col-sm-4 text-center my-2 my-sm-0">
                         <!-- <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> -->
                      </div>
@@ -248,7 +254,7 @@ function test_input($data) {
 
 
                   <div class="comment-form">
-                  <h4>Leave a Reply</h4>
+                  <h4>Share your review</h4>
                   <form class="form-contact comment_form" method="post" id="commentForm">
                      <div class="row">
                         <div class="col-12">
@@ -275,15 +281,28 @@ function test_input($data) {
                      <div class="form-group">
                         <button type="submit" class="button button-contactForm btn_1 boxed-btn">Submit Review</button>
                      </div>
+
+                     <p><?php echo $status;?></p>
                   </form>
                </div>
                 
                </div>
              
                <div class="comments-area">
-                  <h4>05 Comments</h4>
+                  <h4><?php
+                     $sql = "SELECT * from reviews WHERE menuId='".$_GET['menu']."' AND approval=1";
+
+                     if ($result = mysqli_query($con, $sql)) {
+                     
+                         // Return the number of rows in result set
+                         $rowcount = mysqli_num_rows( $result );
+                         
+                         // Display result
+                         printf("%d Review(s)\n", $rowcount);
+                      }
+                     ?></h4>
                   <?php
-                        $sql3 = "SELECT * FROM reviews WHERE menuId='".$_GET['menu']."' ";
+                        $sql3 = "SELECT * FROM reviews WHERE menuId='".$_GET['menu']."' AND approval=1";
                         $result3 = $conn->query($sql3);
 
                         if ($result3->num_rows > 0) {
