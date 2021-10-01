@@ -83,29 +83,20 @@ $msg="";
                   <li><a href="index.php?tab=booking_calendar"><i class="fa fa-calendar"></i>Booking Calendar<span class=""></span></a>
                   </li>
                   <!-- Rooms -->
-                  <li><a href="index.php?tab=rooms"><i class="fa fa-bed"></i>Rooms<span class=""></span></a>
+                  <li><a href="index.php?tab=room_details"><i class="fa fa-bed"></i>Rooms<span class=""></span></a>
                   </li>
                   <!-- Guest Log -->
                   <li><a href="index.php?tab=guest_log"><i class="fa fa-user"></i>Guest Log<span class=""></span></a>
                   </li>
-                  <!-- Users -->
-                   <li><a><i class="fa fa-user"></i>Users<span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="index.php?tab=manageusers">Manage Users</a></li>
-                      <li><a href="index.php?tab=createnewuser">Create New User</a></li>
-                    </ul>
-                  </li>
+
                    <!-- Reports -->
                   <li><a><i class="fa fa-bar-chart-o"></i>Report<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-					            <li><a href="index.php?tab=get_report_summary">Report Summary</a></li>
-                      <li><a href="index.php?tab=get_report_summary">Monthly Report</a></li>
-                     
-                      
+					            <li><a href="index.php?tab=get_report_summary">Report Summary</a></li>								
                     </ul>
                   </li>
                    <!-- Settings -->
-				          <li><a href="index.php?tab=payment_home"><i class="fa fa-wrench"></i> Settings <span class=""></span></a></li>    
+				  <li><a href="index.php?tab=payment_home"><i class="fa fa-wrench"></i> Settings <span class=""></span></a></li>    
                 </ul>
               </div>
             </div>
@@ -191,6 +182,26 @@ $msg="";
                         include "dashboard/search_reservation.php";                  
                       } else if ($t=='get_report_summary'){//get report summary
                         include "dashboard/report_summary.php";         
+                      }else if ($t=='get_checkin_report'){//checkins
+                        include "dashboard/checkins.php";         
+                      }else if ($t=='get_checkout_report'){//checkouts
+                        include "dashboard/checkouts.php";         
+                      }else if ($t=='get_available_rooms'){//check available rooms
+                        include "dashboard/view_available_rooms.php";         
+                      }else if ($t=='view_report'){//view_reports
+                        include "dashboard/view_report.php";         
+                      }else if ($t=='download_report'){//view_reports
+                        include "dashboard/download_report.php";         
+                      }else if ($t=='room_details'){//view_reports
+                        include "dashboard/view_room_details.php";         
+                      }else if ($t=='standard_room'){//standard room
+                        include "dashboard/standard_room.php";         
+                      }else if ($t=='delux_room'){//delux room
+                        include "dashboard/delux_room.php";         
+                      }else if ($t=='suite_room'){//suite room
+                        include "dashboard/suite_room.php";         
+                      }else if ($t=='block_room'){//block room
+                        include "dashboard/block_room.php";         
                       }
                     ?>
                     </div>
