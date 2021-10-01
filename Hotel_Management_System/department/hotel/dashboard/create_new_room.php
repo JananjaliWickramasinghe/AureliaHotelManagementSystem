@@ -46,7 +46,7 @@ if (isset($_POST['submit'])){
 		if(is_writable(dirname($target))){
 			if(move_uploaded_file($_FILES['image']['tmp_name'], $target)){
 				
-				$sql = "INSERT INTO room(r_id,ac_nac,description,image) VALUES('$id','$acNac','$des','$image')";
+				$sql = "INSERT INTO rooms(r_id,ac_nac,description,image) VALUES('$id','$acNac','$des','$image')";
 	
 				if(mysqli_query($conn,$sql))
 					{
